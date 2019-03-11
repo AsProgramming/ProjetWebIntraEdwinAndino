@@ -16,10 +16,11 @@
   
   
   <label for="password2">Confirm Password</label>
-  <input type="password" name="password2" class="form-control" formControlName="passwordConfirm" [ngClass]="{'is-invalid':submitted && f.passwordConfirm.errors}" placeholder="********"/>
-  <div *ngIf="submitted && f.passwordConfirm.errors" class="invalid-feedback">
-    <div *ngIf="f.passwordConfirm.errors.required"> required</div>
-    <div *ngIf="f.passwordConfirm.errors.minlength"> must be at least 6 characters</div>
+  <input type="password" name="password2" class="form-control" formControlName="confirmPassword" [ngClass]="{'is-invalid':submitted && f.confirmPassword.errors}" placeholder="********"/>
+  <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+    <div *ngIf="f.confirmPassword.errors.required"> required</div>
+    <div *ngIf="f.confirmPassword.errors.minlength"> must be at least 6 characters</div>
+    <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
   </div> 
   <button type="submit" class="btn btn-primary" style="width: 500px; margin-top: 10px">Register</button>
 </form>  

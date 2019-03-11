@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MustMatch } from '../util/validator';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import {User} from '../user';
@@ -57,17 +58,14 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      passwordConfirm: ['', [Validators.required, Validators.minLength(6)]]
-    });
+      confirmPassword: ['', Validators.required]
+  }, {
+      validator: MustMatch('password', 'confirmPassword')
+  });
   }
 
   get f() {
     return this.registerForm.controls;
-  }
-
-  passwordMatch(){
-    return this.f.password.value === this.f.passwordConfirm.value
-    ? null : {'mismatch': true};
   }
 
 }
