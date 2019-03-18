@@ -1,0 +1,25 @@
+<div class="alert alert-danger" *ngIf="serverErrorMsg" style="width: 500px; margin: auto">
+    <p style="text-align: center">{{serverErrorMsg.message}}</p>
+</div>
+  
+<div>
+  <form [formGroup]="registerForm" (ngSubmit) = "loginAttempt()" style="width: 500px; margin: auto">
+    <label for="username">Email</label>
+    <!-- [(ngModel)] = "user.email"  -->
+    <input type = "text" name="email" class="form-control" formControlName="email" [ngClass]="{'is-invalid':submitted && f.password.errors}" />
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+      <div *ngIf="f.email.errors.required"> required</div>
+      <div *ngIf="f.email.errors.email"> must be a valid email address</div>
+    </div>
+
+<!--[(ngModel)] = "user.password"-->
+    <label for="password">Password</label>
+    <input type="password"  name="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid':submitted && f.password.errors}" />
+    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+      <div *ngIf="f.password.errors.required"> required</div>
+      <div *ngIf="f.password.errors.minlength"> must be at least 6 characters</div>
+    </div>
+    <button type="submit" class="btn btn-primary" style="width: 500px; margin-top: 10px">Login</button><br>
+    <a href="#" >Forgot password?</a>
+  </form>
+</div>
